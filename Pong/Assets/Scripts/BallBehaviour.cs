@@ -5,6 +5,8 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour {
 
     public Transform paddle;
+    public Rigidbody2D rbBall;
+
     bool gameStarted = false;
 
 	// Use this for initialization
@@ -22,6 +24,7 @@ public class BallBehaviour : MonoBehaviour {
             //Left Clic=0
             if (Input.GetMouseButtonDown(0))
             {
+                rbBall.velocity = new Vector2(8, 8);
                 gameStarted = true;
             }
         }
