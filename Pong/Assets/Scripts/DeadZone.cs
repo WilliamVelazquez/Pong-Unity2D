@@ -12,7 +12,9 @@ public class DeadZone : MonoBehaviour {
     int playerScoreQuantity;
     int enemyScoreQuantity;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public SceneChanger sceneChanger;
+
+    private void OnTriggerEnter2D(Collider2D ball)
     {
         if(gameObject.tag == "Left")
         {
@@ -23,6 +25,21 @@ public class DeadZone : MonoBehaviour {
         {
             playerScoreQuantity++;
             UpdateScoreLabel(playerScoreText, playerScoreQuantity);
+        }
+
+        ball.GetComponent<BallBehaviour>().gameStarted = false;
+        checkScore();
+    }
+
+    void checkScore()
+    {
+        if(playerScoreQuantity >= 3)
+        {
+            sceneChanger.changeSceneTo("WinScene");
+        }
+        else if (enemyScoreQuantity >= 3)
+        {
+            sceneChanger.changeSceneTo("LoseScene");
         }
     }
 
