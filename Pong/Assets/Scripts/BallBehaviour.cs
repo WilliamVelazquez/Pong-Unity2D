@@ -7,6 +7,9 @@ public class BallBehaviour : MonoBehaviour {
     public Transform paddle;
     public Rigidbody2D rbBall;
 
+    public AudioSource ballAudio;
+    public AudioSource pointAudio;
+
     public bool gameStarted = false;
 
     float posDif = 0;
@@ -29,10 +32,15 @@ public class BallBehaviour : MonoBehaviour {
                 gameStarted = true;
             }
         }
-        else
-        {
-
-        }
-        
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ballAudio.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        pointAudio.Play();
+    }
 }
